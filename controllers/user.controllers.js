@@ -81,7 +81,7 @@ async function userLogin(req,res) {
         const user = await User.findOne({email})
         if(!user){
             return res.status(400).json({
-                message: "Invalid Emai or Password"
+                message: "Invalid Email or Password"
             })
         }
 
@@ -89,7 +89,7 @@ async function userLogin(req,res) {
         const isMatched = await bcrypt.compare(password,user.password)
         if(!isMatched){
             return res.status(400).json({
-                message: "Invalid Emai or Password"
+                message: "Invalid Email or Password"
             })
         }
 
@@ -107,7 +107,7 @@ async function userLogin(req,res) {
 
         res.cookie("token",token)
 
-        res.json({
+        return res.status(200).json({
             message: "Login successful",
             user: {
                 id: user._id,
@@ -124,7 +124,16 @@ async function userLogin(req,res) {
     }
 }
 
+// logout
+function logout(req,res) {
+    res.clearCookie("token")
+    return res.status(200).json({
+        message: "Logout successful.."
+    })
+}
+
 module.exports = {
     userRegister,
-    userLogin
+    userLogin,
+    logout,
 }
