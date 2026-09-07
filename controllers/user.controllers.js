@@ -80,7 +80,7 @@ async function userLogin(req,res) {
         // validation 
         const user = await User.findOne({email})
         if(!user){
-            return res.status(400).json({
+            return res.status(401).json({
                 message: "Invalid Email or Password"
             })
         }
@@ -88,7 +88,7 @@ async function userLogin(req,res) {
         // matching password
         const isMatched = await bcrypt.compare(password,user.password)
         if(!isMatched){
-            return res.status(400).json({
+            return res.status(401).json({
                 message: "Invalid Email or Password"
             })
         }
@@ -132,8 +132,33 @@ function logout(req,res) {
     })
 }
 
+// user profile
+async function userProfile(req,res) {
+    try {
+        const user = await User
+        .findById(req.user.id)
+        .select("-password")
+
+        if(!user){
+            return res.status(404).json({
+                message: "User not found"
+            })
+        }
+
+        return res.status(200).json({
+            user
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
+
 module.exports = {
     userRegister,
     userLogin,
     logout,
+    userProfile,
 }
