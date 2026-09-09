@@ -24,7 +24,7 @@ function authMiddleware(req,res,next) {
 
 // Admin middleware
 function adminMiddleware(req,res,next) {
-    if(!req.user.role !== "Admin"){
+    if(req.user.role !== "Admin"){
         return res.status(403).json({
             message: "Admin access required..."
         })
@@ -34,4 +34,5 @@ function adminMiddleware(req,res,next) {
 
 module.exports = {
     authMiddleware,
+    adminMiddleware,
 }
