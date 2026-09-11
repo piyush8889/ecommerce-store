@@ -33,7 +33,25 @@ async function createProduct(req,res) {
     }
 }
 
+//  GET ALL PRODUCTS
+async function getProducts(req, res, next) {
+
+    try {
+
+        const products = await Product.find();
+
+        res.json({
+            count: products.length,
+            products
+        });
+
+    } catch (error) {
+        next(error);
+    }
+}
+
 
 module.exports = {
     createProduct,
+    getProducts,
 }

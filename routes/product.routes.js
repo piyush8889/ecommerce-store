@@ -1,6 +1,6 @@
 const express = require("express")
 const { authMiddleware, adminMiddleware } = require("../middlewares/user.middleware")
-const { createProduct } = require("../controllers/product.controllers")
+const { createProduct, getProducts } = require("../controllers/product.controllers")
 const router = express.Router()
 
 // Admin 
@@ -11,5 +11,9 @@ router
     adminMiddleware,
     createProduct
 )
+
+// public
+router
+  .get("/", getProducts);
 
 module.exports = router
