@@ -40,13 +40,16 @@ async function getProducts(req, res, next) {
 
         const products = await Product.find();
 
-        res.json({
+        return res.status(200).json({
             count: products.length,
             products
         });
 
     } catch (error) {
-        next(error);
+        console.error(error)
+        return res.status(500).json({
+            message: "Failed to get products"
+        })
     }
 }
 
