@@ -53,8 +53,29 @@ async function getProducts(req, res, next) {
     }
 }
 
+// Get single product 
+async function getProductById(req,res) {
+    try {
+        const product = await Product.findById(req.params.id)
+
+        if(!product){
+            return res.status(404).json({
+                message: "Product not found"
+            })
+        }
+
+        return res.status(200).json({
+            product
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message: "Failed to get product"
+        })
+    }
+}
 
 module.exports = {
     createProduct,
     getProducts,
+    getProductById,
 }
