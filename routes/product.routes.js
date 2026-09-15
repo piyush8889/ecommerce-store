@@ -1,6 +1,6 @@
 const express = require("express")
 const { authMiddleware, adminMiddleware } = require("../middlewares/user.middleware")
-const { createProduct, getProducts, getProductById, updateProduct } = require("../controllers/product.controllers")
+const { createProduct, getProducts, getProductById, updateProduct, deleteProduct } = require("../controllers/product.controllers")
 const router = express.Router()
 
 // Admin 
@@ -12,7 +12,10 @@ router
     createProduct
 )
 
-router.patch("/:id",authMiddleware,adminMiddleware,updateProduct)
+router
+  .route("/:id")
+  .patch(authMiddleware,adminMiddleware,updateProduct)
+  .delete(authMiddleware,adminMiddleware,deleteProduct)
 
 // public
 router.get("/", getProducts);
