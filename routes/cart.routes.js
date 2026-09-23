@@ -1,6 +1,6 @@
 const express = require("express")
 const { authMiddleware } = require("../middlewares/user.middleware")
-const { addToCart } = require("../controllers/cart.controllers")
+const { addToCart, getCart } = require("../controllers/cart.controllers")
 
 
 const router = express.Router()
@@ -8,5 +8,7 @@ const router = express.Router()
 router.use(authMiddleware)
 
 router
-  .post("/",addToCart)
+  .route("/")
+  .post(addToCart)
+  .get(getCart)
 module.exports = router

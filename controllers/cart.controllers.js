@@ -106,6 +106,35 @@ async function addToCart(req, res, next) {
     }
 }
 
+async function getCart(req, res) {
+
+    try {
+
+        const cart = await Cart.findOne({
+            user: req.user.id
+        }).populate("items.product");
+
+        if (!cart) {
+            return res.status(200).json({
+                items: []
+            });
+        }
+
+        return res.status(200).json({
+            cart
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        return res.status(500).json({
+            message: "Failed to get cart"
+        });
+    }
+}
+
 module.exports = {
-    addToCart
+    addToCart,
+    getCart
 }
