@@ -134,7 +134,53 @@ async function getCart(req, res) {
     }
 }
 
+async function removeFromCart(req, res) {
+
+    try {
+
+        const cart = await Cart.findOne({
+            user: req.user.id
+        });
+
+        if (!cart) {
+            return res.status(404).json({
+                message: "Cart not found"
+            });
+        }
+
+        const initialLength = cart.items.length;
+
+        cart.items = cart.items.filter(
+            item =>
+                item.product.toString() !==
+                req.params.productId.toString()
+        );
+
+        if (cart.items.length === initialLength) {
+            return res.status(404).json({
+                message: "Product not found in cart"
+            });
+        }
+
+        await cart.save();
+
+        return res.status(200).json({
+            message: "Product removed from cart",
+            cart
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        return res.status(500).json({
+            message: "Failed to remove product from cart"
+        });
+    }
+}
+
 module.exports = {
     addToCart,
-    getCart
+    getCart,
+    removeFromCart
 }
