@@ -1,4 +1,5 @@
-const Product = require("../models/product")
+// const Product = require("../models/product")
+import Product from "../models/product.js";
 
 // create product
 async function createProduct(req,res) {
@@ -34,7 +35,7 @@ async function createProduct(req,res) {
 }
 
 //  GET ALL PRODUCTS
-async function getProducts(req, res, next) {
+async function getProducts(req, res) {
 
     try {
 
@@ -131,10 +132,18 @@ async function deleteProduct(req,res) {
 }
 
 
-module.exports = {
+export {
     createProduct,
     getProducts,
     getProductById,
     updateProduct,
     deleteProduct
 }
+
+// module.exports = {
+//     createProduct,
+//     getProducts,
+//     getProductById,
+//     updateProduct,
+//     deleteProduct
+// }
