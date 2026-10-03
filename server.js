@@ -1,5 +1,7 @@
-const  app = require("./app")
-const { connectMongoDB } = require("./db/connection")
+// const  app = require("./app")
+// const { connectMongoDB } = require("./db/connection")
+import app from "./app.js"
+import connectMongoDB from "./db/connection.js"
 
 connectMongoDB(process.env.DB_URI)
   .then(()=> {
