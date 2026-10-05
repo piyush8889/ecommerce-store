@@ -1,7 +1,21 @@
-const express = require("express")
-const { authMiddleware, adminMiddleware } = require("../middlewares/user.middleware")
-const { createProduct, getProducts, getProductById, updateProduct, deleteProduct } = require("../controllers/product.controllers")
+// const express = require("express")
+// const { authMiddleware, adminMiddleware } = require("../middlewares/user.middleware")
+// const { createProduct, getProducts, getProductById, updateProduct, deleteProduct } = require("../controllers/product.controllers")
+import express from "express";
+import {
+  authMiddleware,
+  adminMiddleware
+} from "../middlewares/user.middleware.js"
+import {
+  createProduct,
+  getProducts,
+  getProductById,
+  updateProduct,
+  deleteProduct
+} from "../controllers/product.controllers.js"
+
 const router = express.Router()
+
 
 // Admin 
 router
@@ -22,5 +36,5 @@ router.get("/", getProducts);
 
 router.get("/:id",getProductById)
   
-
-module.exports = router
+export default router
+// module.exports = router
