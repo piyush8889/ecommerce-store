@@ -1,7 +1,18 @@
-const express = require("express")
+// const express = require("express")
 
-const { userRegister, userLogin, logout, userProfile } = require("../controllers/user.controllers")
-const { authMiddleware } = require("../middlewares/user.middleware")
+// const { userRegister, userLogin, logout, userProfile } = require("../controllers/user.controllers")
+// const { authMiddleware } = require("../middlewares/user.middleware")
+
+import express from "express"
+import {
+  userRegister,
+  userLogin,
+  logout,
+  userProfile
+} from "../controllers/user.controllers.js"
+import {
+  authMiddleware
+} from "../middlewares/user.middleware.js"
 
 const router = express.Router()
 
@@ -22,4 +33,6 @@ router
 router
   .route("/me")
   .get(authMiddleware,userProfile)
-module.exports = router
+
+  export default router
+// module.exports = router
