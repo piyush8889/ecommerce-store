@@ -1,12 +1,21 @@
-require("dotenv").config()
-const express = require("express")
-const cookieParser = require("cookie-parser") 
+import "dotenv/config"
 
-const userRoute = require("./routes/user.routes")
-const productRoute = require("./routes/product.routes")
-const cartRoute = require("./routes/cart.routes")
+import express from "express"
+import cookieParser from "cookie-parser"
+import userRoute from "./routes/user.routes.js"
+import productRoute from "./routes/product.routes.js"
+import cartRoute from "./routes/cart.routes.js"
+
+// const express = require("express")
+// const cookieParser = require("cookie-parser") 
+
+// const userRoute = require("./routes/user.routes")
+// const productRoute = require("./routes/product.routes")
+// const cartRoute = require("./routes/cart.routes")
 
 const app = express()
+
+
 
 // middleware
 app.use(express.json())
@@ -19,4 +28,5 @@ app.use("/api/v1/user",userRoute)
 app.use("/api/v1/product",productRoute)
 app.use("/api/v1/cart",cartRoute)
 
-module.exports = app
+export default app
+// module.exports = app
