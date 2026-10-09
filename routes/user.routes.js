@@ -1,7 +1,3 @@
-// const express = require("express")
-
-// const { userRegister, userLogin, logout, userProfile } = require("../controllers/user.controllers")
-// const { authMiddleware } = require("../middlewares/user.middleware")
 
 import express from "express"
 import {
@@ -35,4 +31,3 @@ router
   .get(authMiddleware,userProfile)
 
   export default router
-// module.exports = router
