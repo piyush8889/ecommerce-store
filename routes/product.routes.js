@@ -1,6 +1,4 @@
-// const express = require("express")
-// const { authMiddleware, adminMiddleware } = require("../middlewares/user.middleware")
-// const { createProduct, getProducts, getProductById, updateProduct, deleteProduct } = require("../controllers/product.controllers")
+
 import express from "express";
 import {
   authMiddleware,
@@ -37,4 +35,3 @@ router.get("/", getProducts);
 router.get("/:id",getProductById)
   
 export default router
-// module.exports = router
