@@ -1,6 +1,3 @@
-// const express = require("express")
-// const { authMiddleware } = require("../middlewares/user.middleware")
-// const { addToCart, getCart, removeFromCart } = require("../controllers/cart.controllers")
 import express from "express"
 import {
   authMiddleware
@@ -23,4 +20,3 @@ router
 
 router.delete("/:productId",removeFromCart)
 export default router
-// module.exports = router
